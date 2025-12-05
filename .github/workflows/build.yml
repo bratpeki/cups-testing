@@ -7,6 +7,10 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-java@v5
+        with:
+          distribution: 'liberica'
+          java-version: '11'
       - name: Install dependencies
         run: |
           sudo apt-get update
@@ -14,7 +18,8 @@ jobs:
       - name: Run tests
         run: |
           mkdir -p $HOME/PDF
-          lpr -P PDF sample.pdf
+          # lpr -P PDF sample.pdf # baseline (works)
+          java -jar pdfbox-app-3.0.6.jar print -printerName=PDF -silentPrint --input=sample.pdf
           export TERM=linux
           # Ubuntu in CI uses "sample-job_1.pdf"
           watch --no-title --interval .1 --chgexit 'ls -al $HOME/PDF | grep sample'
