@@ -15,6 +15,9 @@ jobs:
         run: |
           mkdir -p $HOME/PDF
           lpr -P PDF sample.pdf
-          sleep 5 # i hate this
+          export TERM=linux
+          # Ubuntu in CI uses "sample-job_1.pdf"
+          watch --no-title --interval .1 --chgexit 'ls -al $HOME/PDF | grep sample'
+          unset TERM
           ls -al $HOME/PDF
           
