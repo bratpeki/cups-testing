@@ -15,5 +15,6 @@ jobs:
         run: |
           mkdir -p $HOME/PDF
           lpr -P PDF sample.pdf
+          watch --no-title --interval .1 --chgexit 'ls -al $HOME/PDF | grep "sample.pdf"'
           ls -al $HOME/PDF
           
