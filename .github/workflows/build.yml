@@ -13,6 +13,7 @@ jobs:
           sudo apt-get install -y cups-pdf cups-bsd
       - name: Run tests
         run: |
+          mkdir -p $HOME/PDF
           lpr -P PDF sample.pdf
           ls -al $HOME/PDF
           
