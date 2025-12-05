@@ -10,7 +10,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y cups-pdf
+          sudo apt-get install -y cups-pdf cups-bsd
       - name: Run tests
         run: |
           lpr -P PDF sample.pdf
